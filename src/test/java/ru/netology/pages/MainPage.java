@@ -22,7 +22,7 @@ public class MainPage {
     public PaymentFormPage openPaymentForm(){
         buyButton.click();
         paymentFormHeading.shouldBe(Condition.visible);
-        return new PaymentFormPage ();
+        return new PaymentFormPage();
     }
 
     public CreditFormPage openCreditForm(){
