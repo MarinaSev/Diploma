@@ -5,7 +5,7 @@ import org.apache.commons.dbutils.QueryRunner;
 
 import java.sql.*;
 
-public class DBUils {
+public class DBUtils {
 
     private static String dbUrl = System.getProperty("db.url");
     private static String appUrl = System.getProperty("app.url");

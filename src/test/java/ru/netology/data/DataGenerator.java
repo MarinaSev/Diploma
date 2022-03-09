@@ -65,4 +65,8 @@ public class DataGenerator {
     public static String getCvv() {
         return faker.number().digits(3);
     }
+
+    public static String getInvalidCardNumber() {
+        return faker.business().creditCardNumber();
+    }
 }
