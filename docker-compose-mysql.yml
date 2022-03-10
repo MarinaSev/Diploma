@@ -15,7 +15,7 @@ services:
   node-app:
     build: ./gate-simulator
     image: node-app:Dockerfile.0
-#    container_name: js-container
+    container_name: js-container
     ports:
       - '9999:9999'
 
