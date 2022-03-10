@@ -148,7 +148,7 @@ public class CardPaymentTest {
     public void shouldSendFormWithPartialYear() {
         var partialYearCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getPlainNumber(), getName(), getCvv());
         paymentPage.fillForm(partialYearCardInfo);
-        paymentPage.checkWrongDateMessage();
+        paymentPage.checkWrongFormatMessage();
     }
 
     @Test

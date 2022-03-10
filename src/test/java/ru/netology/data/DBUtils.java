@@ -41,4 +41,17 @@ public class DBUtils {
             return status;
         }
     }
+
+    public static String getCreditRequestStatus() throws SQLException {
+        String statusSQL = "SELECT status FROM credit_request_entity";
+        return getStatus(statusSQL);
+    }
+
+    private static String getCreditStatus(String query) throws SQLException {
+        var runner = new QueryRunner();
+        try (var connection = getConnection()) {
+            String status = runner.query(connection, query, new ScalarHandler<String>());
+            return status;
+        }
+    }
 }
