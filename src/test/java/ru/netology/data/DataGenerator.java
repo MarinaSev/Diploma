@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    private static Faker faker = new Faker(new Locale("en"));
+    private static Faker faker = new Faker(new Locale("EN"));
     private static Random random = new Random();
 
     private DataGenerator() {
@@ -73,7 +73,7 @@ public class DataGenerator {
     }
 
     public static String getName() {
-        return faker.name().fullName();
+        return faker.name().name();
     }
 
     public static String getNameWIhtHyphen() {
@@ -84,8 +84,12 @@ public class DataGenerator {
         return faker.name().firstName();
     }
 
+    public static String getThreeWordName() {
+        return (faker.name().firstName() + " " + faker.name().lastName() + " " + faker.name().lastName());
+    }
+
     public static String getRuName() {
-        Faker ruFaker = new Faker(new Locale("ru"));
+        Faker ruFaker = new Faker(new Locale("RU"));
         return ruFaker.name().fullName();
     }
 
@@ -97,7 +101,6 @@ public class DataGenerator {
         return faker.number().digits(numberLenght);
     }
 
-    public static String getInvalidCardNumber() {
-        return faker.business().creditCardNumber();
-    }
 }
+
+

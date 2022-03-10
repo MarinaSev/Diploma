@@ -19,7 +19,7 @@ public class PaymentFormPage {
     private final SelenideElement buttonContinue = $$(".button__text").find(Condition.text("Продолжить"));
 
     private SelenideElement successNotification = $(withText("Операция одобрена Банком."));
-    private SelenideElement errorNotification = $(withText("Банк отказал в проведении операции."));
+    private SelenideElement errorNotification = $(withText("Ошибка! Банк отказал в проведении операции."));
     private SelenideElement wrongFormat = $(withText("Неверный формат"));
     private SelenideElement wrongDate = $(withText("Неверно указан срок действия карты"));
     private SelenideElement wrongExpired = $(withText("Истёк срок действия карты"));
@@ -52,5 +52,9 @@ public class PaymentFormPage {
 
     public void checkWrongExpiredMessage() {
         wrongExpired.shouldBe(Condition.visible, Duration.ofSeconds(15));
+    }
+
+    public void checkErrorNecessaryMessage() {
+        errorNecessary.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 }

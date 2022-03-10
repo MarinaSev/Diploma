@@ -61,16 +61,6 @@ public class CardPaymentTest {
     }
 
     @Test
-    public void shouldCheckTourAmounInDB() throws SQLException {
-        var validCard = DataGenerator.getValidCard();
-        paymentPage.fillForm(validCard);
-        paymentPage.checkSuccessMessage();
-        var amountSQL = DBUtils.getSQLAmount();
-        var tourCost = DataGenerator.getTourCost;
-        assertEquals(tourCost, amountSQL);
-    }
-
-    @Test
     public void shouldSendAnyCard() {
         var anyCard = DataGenerator.getAnyCard();
         paymentPage.fillForm(anyCard);
@@ -86,23 +76,23 @@ public class CardPaymentTest {
 
     @Test
     public void shouldSendFormWithEmptyMonthField() {
-        var emptyField = new DataGenerator.CardInfo(getCardNumber(), "", getYear(), getName(), getCvv());
+        var emptyField = new DataGenerator.CardInfo(getApprovedCardNumber(), "", getYear(), getName(), getCvv());
         paymentPage.fillForm(emptyField);
         paymentPage.checkWrongFormatMessage();
     }
 
     @Test
     public void shouldSendFormWithEmptyYearField() {
-        var emptyField = new DataGenerator.CardInfo(getCardNumber(), getMonth(), "", getName(), getCvv());
+        var emptyField = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), "", getName(), getCvv());
         paymentPage.fillForm(emptyField);
         paymentPage.checkWrongFormatMessage();
     }
 
     @Test
     public void shouldSendFormWithEmptyNameField() {
-        var emptyField = new DataGenerator.CardInfo(getCardNumber(), getMonth(), getYear(), "", getCvv());
+        var emptyField = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getYear(), "", getCvv());
         paymentPage.fillForm(emptyField);
-        paymentPage.checkWrongFormatMessage();
+        paymentPage.checkErrorNecessaryMessage();
     }
 
     @Test
@@ -128,35 +118,35 @@ public class CardPaymentTest {
 
     @Test
     public void shouldSendFormWithWrongMonth() {
-        var wrongMonthCardInfo = new DataGenerator.CardInfo(getCardNumber(), getWrongMonth(), getYear(), getName(), getCvv());
+        var wrongMonthCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getWrongMonth(), getYear(), getName(), getCvv());
         paymentPage.fillForm(wrongMonthCardInfo);
-        paymentPage.checkWrongFormatMessage();
+        paymentPage.checkWrongDateMessage();
     }
 
     @Test
     public void shouldSendFormWithMonth00() {
-        var month00CardInfo = new DataGenerator.CardInfo(getCardNumber(), "00", getYear(), getName(), getCvv());
+        var month00CardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), "00", getYear(), getName(), getCvv());
         paymentPage.fillForm(month00CardInfo);
-        paymentPage.checkWrongFormatMessage();
+        paymentPage.checkWrongDateMessage();
     }
 
     @Test
     public void shouldSendFormWithPartialMonth() {
-        var partialMonthCardInfo = new DataGenerator.CardInfo(getCardNumber(), getPlainNumber(), getYear(), getName(), getCvv());
+        var partialMonthCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getPlainNumber(), getYear(), getName(), getCvv());
         paymentPage.fillForm(partialMonthCardInfo);
-        paymentPage.checkWrongDateMessage();
+        paymentPage.checkWrongFormatMessage();
     }
 
     @Test
     public void shouldSendFormWithWrongYear() {
-        var wrongYearCardInfo = new DataGenerator.CardInfo(getCardNumber(), getMonth(), getWrongYear(), getName(), getCvv());
+        var wrongYearCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getWrongYear(), getName(), getCvv());
         paymentPage.fillForm(wrongYearCardInfo);
-        paymentPage.checkWrongDateMessage();
+        paymentPage.checkWrongExpiredMessage();
     }
 
     @Test
     public void shouldSendFormWithPartialYear() {
-        var partialYearCardInfo = new DataGenerator.CardInfo(getCardNumber(), getMonth(), getNumber(3), getName(), getCvv());
+        var partialYearCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getPlainNumber(), getName(), getCvv());
         paymentPage.fillForm(partialYearCardInfo);
         paymentPage.checkWrongDateMessage();
     }
@@ -169,6 +159,13 @@ public class CardPaymentTest {
     }
 
     @Test
+    public void shouldSendFormWith3WordName() {
+        var threeWordNameCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getYear(), getThreeWordName(), getCvv());
+        paymentPage.fillForm(threeWordNameCardInfo);
+        paymentPage.checkSuccessMessage();
+    }
+
+    @Test
     public void shouldSendFormWithOneWordName() {
         var oneWordNameCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getYear(), getFirstName(), getCvv());
         paymentPage.fillForm(oneWordNameCardInfo);
@@ -176,7 +173,7 @@ public class CardPaymentTest {
     }
 
     @Test
-    public void shouldSendFormWithRusdName() {
+    public void shouldSendFormWithRusName() {
         var rusNameCardInfo = new DataGenerator.CardInfo(getApprovedCardNumber(), getMonth(), getYear(), getRuName(), getCvv());
         paymentPage.fillForm(rusNameCardInfo);
         paymentPage.checkWrongFormatMessage();
