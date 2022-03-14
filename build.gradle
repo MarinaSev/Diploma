@@ -35,5 +35,5 @@ test {
     systemProperty 'app.url', System.getProperty('app.url','http://localhost:8080')
     systemProperty 'login', System.getProperty('login','app')
     systemProperty 'password', System.getProperty('password','pass')
-
+    systemProperty 'file.encoding', 'UTF-8'
 }

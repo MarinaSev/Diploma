@@ -1,5 +1,6 @@
 package ru.netology.test;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +10,6 @@ import ru.netology.data.DataGenerator;
 import ru.netology.pages.MainPage;
 import ru.netology.pages.PaymentFormPage;
 
-import java.sql.SQLException;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,7 +26,8 @@ public class CardPaymentTest {
     }
 
     @AfterEach
-    public void clearData() throws SQLException {
+    @SneakyThrows
+    public void clearData() {
         DBUtils.clearData();
     }
 
@@ -45,7 +46,8 @@ public class CardPaymentTest {
     }
 
     @Test
-    public void shouldCheckStatusApprovedCard() throws SQLException {
+    @SneakyThrows
+    public void shouldCheckStatusApprovedCard() {
         var validCard = DataGenerator.getValidCard();
         paymentPage.fillForm(validCard);
         paymentPage.checkSuccessMessage();
@@ -53,7 +55,8 @@ public class CardPaymentTest {
     }
 
     @Test
-    public void shouldCheckStatusDeclinedCard() throws SQLException {
+    @SneakyThrows
+    public void shouldCheckStatusDeclinedCard() {
         var invalidCard = DataGenerator.getInvalidCard();
         paymentPage.fillForm(invalidCard);
         paymentPage.checkErrorMessage();

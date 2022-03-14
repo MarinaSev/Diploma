@@ -2,15 +2,15 @@ package ru.netology.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-import lombok.val;
+import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 public class DBUtils {
 
-    public static Connection getConnection() throws SQLException {
+    @SneakyThrows
+    public static Connection getConnection() {
         String dbUrl = System.getProperty("db.url");
         String login = System.getProperty("login");
         String password = System.getProperty("password");
@@ -18,7 +18,8 @@ public class DBUtils {
         return connection;
     }
 
-    public static void clearData() throws SQLException {
+    @SneakyThrows
+    public static void clearData() {
         var runner = new QueryRunner();
         try (
                 var connection = getConnection();
@@ -29,12 +30,14 @@ public class DBUtils {
         }
     }
 
-    public static String getPaymentStatus() throws SQLException {
+    @SneakyThrows
+    public static String getPaymentStatus() {
         String statusSQL = "SELECT status FROM payment_entity";
         return getStatus(statusSQL);
     }
 
-    private static String getStatus(String query) throws SQLException {
+    @SneakyThrows
+    private static String getStatus(String query) {
         var runner = new QueryRunner();
         try (var connection = getConnection()) {
             String status = runner.query(connection, query, new ScalarHandler<String>());
@@ -42,16 +45,18 @@ public class DBUtils {
         }
     }
 
-    public static String getCreditRequestStatus() throws SQLException {
+    @SneakyThrows
+    public static String getCreditRequestStatus() {
         String statusSQL = "SELECT status FROM credit_request_entity";
         return getStatus(statusSQL);
     }
 
-    private static String getCreditStatus(String query) throws SQLException {
-        var runner = new QueryRunner();
-        try (var connection = getConnection()) {
-            String status = runner.query(connection, query, new ScalarHandler<String>());
-            return status;
-        }
-    }
+//    private static String getCreditStatus(String query) throws SQLException {
+//        var runner = new QueryRunner();
+//        try (var connection = getConnection()) {
+//            String status = runner.query(connection, query, new ScalarHandler<String>());
+//            return status;
+//        }
+//    }
+
 }

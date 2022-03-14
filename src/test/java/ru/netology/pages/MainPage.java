@@ -25,10 +25,10 @@ public class MainPage {
         return new PaymentFormPage();
     }
 
-    public CreditFormPage openCreditForm(){
+    public PaymentFormPage openCreditForm(){
         creditButton.click();
         creditFormHeading.shouldBe(Condition.visible);
-        return new CreditFormPage();
+        return new PaymentFormPage();
     }
 
 

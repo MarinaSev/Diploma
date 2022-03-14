@@ -97,8 +97,8 @@ public class DataGenerator {
         return faker.number().digits(3);
     }
 
-    public static String getNumber(int numberLenght) {
-        return faker.number().digits(numberLenght);
+    public static String getNumber(int numberLength) {
+        return faker.number().digits(numberLength);
     }
 
 }
