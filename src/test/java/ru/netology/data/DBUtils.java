@@ -51,12 +51,4 @@ public class DBUtils {
         return getStatus(statusSQL);
     }
 
-//    private static String getCreditStatus(String query) throws SQLException {
-//        var runner = new QueryRunner();
-//        try (var connection = getConnection()) {
-//            String status = runner.query(connection, query, new ScalarHandler<String>());
-//            return status;
-//        }
-//    }
-
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "io.freefair.lombok" version "5.0.1"
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 group 'ru.netology'
@@ -10,6 +11,15 @@ sourceCompatibility = 11
 
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
+
+allure {
+    autoconfigure = true
+    version = '2.16.1'
+
+    useJUnit5 {
+        version = '2.16.1'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -25,6 +35,7 @@ dependencies {
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'io.qameta.allure:allure-selenide:2.17.3'
 }
 
 test {
@@ -35,5 +46,4 @@ test {
     systemProperty 'app.url', System.getProperty('app.url','http://localhost:8080')
     systemProperty 'login', System.getProperty('login','app')
     systemProperty 'password', System.getProperty('password','pass')
-    systemProperty 'file.encoding', 'UTF-8'
 }
