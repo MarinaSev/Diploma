@@ -23,3 +23,4 @@
      <code>.\gradlew clean test -Ddb.url=jdbc:mysql://localhost:3306/app/</code>
    * для **PostgreSQL**
      <code>.\gradlew clean test -Ddb.url=jdbc:postgresql://localhost:5432/app</code>
+6. По окочанию прохождения тестов сформировать отчёт командой <code>.\gradlew allureReport</code>

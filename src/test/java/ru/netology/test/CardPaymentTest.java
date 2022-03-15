@@ -68,8 +68,9 @@ public class CardPaymentTest {
     public void shouldCheckStatusDeclinedCard() {
         var invalidCard = DataGenerator.getInvalidCard();
         paymentPage.fillForm(invalidCard);
-//        paymentPage.checkErrorMessage();
-        assertEquals("DECLINED", DBUtils.getPaymentStatus());
+        paymentPage.checkErrorMessage();
+        var paymentStatus = DBUtils.getPaymentStatus();
+        assertEquals("DECLINED", paymentStatus);
     }
 
     @Test

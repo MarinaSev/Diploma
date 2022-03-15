@@ -24,9 +24,9 @@ public class DBUtils {
         try (
                 var connection = getConnection();
         ) {
-            runner.update(connection, "DELETE FROM payment_entity;");
-            runner.update(connection, "DELETE FROM credit_request_entity;");
-            runner.update(connection, "DELETE FROM order_entity;");
+            runner.update(connection, "DELETE FROM payment_entity WHERE true;");
+            runner.update(connection, "DELETE FROM credit_request_entity WHERE true;");
+            runner.update(connection, "DELETE FROM order_entity WHERE true;");
         }
     }
 

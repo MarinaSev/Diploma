@@ -19,15 +19,15 @@ public class CreditPaymentTest {
 
     private PaymentFormPage paymentPage;
 
-    @BeforeAll
-    static void setUpAll() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-    }
-
-    @AfterAll
-    static void tearDownAll() {
-        SelenideLogger.removeListener("allure");
-    }
+//    @BeforeAll
+//    static void setUpAll() {
+//        SelenideLogger.addListener("allure", new AllureSelenide());
+//    }
+//
+//    @AfterAll
+//    static void tearDownAll() {
+//        SelenideLogger.removeListener("allure");
+//    }
 
     @BeforeEach
     public void setUp() {
@@ -70,7 +70,7 @@ public class CreditPaymentTest {
     public void shouldCheckStatusDeclinedCard() {
         var invalidCard = DataGenerator.getInvalidCard();
         paymentPage.fillForm(invalidCard);
-///        paymentPage.checkErrorMessage();
+        paymentPage.checkErrorMessage();
         assertEquals("DECLINED", DBUtils.getCreditRequestStatus());
     }
 
