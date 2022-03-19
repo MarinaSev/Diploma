@@ -19,15 +19,15 @@ public class CreditPaymentTest {
 
     private PaymentFormPage paymentPage;
 
-//    @BeforeAll
-//    static void setUpAll() {
-//        SelenideLogger.addListener("allure", new AllureSelenide());
-//    }
-//
-//    @AfterAll
-//    static void tearDownAll() {
-//        SelenideLogger.removeListener("allure");
-//    }
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
 
     @BeforeEach
     public void setUp() {
